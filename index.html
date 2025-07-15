@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa KingKong 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            .container {
+                padding: 20px 10px;
+            }
+
+            .team-members {
+                grid-template-columns: 1fr;
+            }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            100% { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+        }
+
+        .description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .participants-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .participants-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 30px;
+        }
+
+        .participants-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .participants-row {
+            display: contents;
+        }
+
+        .participant-item {
+            background: rgba(255,255,255,0.9);
+            margin: 3px 0;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .participant-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .participant-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .teams-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .team-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-card.team-a {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+        }
+
+        .team-card.team-b {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44bd87 100%);
+            color: white;
+        }
+
+        .team-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .team-member {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .photo-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .photo-container {
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .photo-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .participants-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .teams-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .decorative-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-elements">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
+    <div class="hero-section">
+        <h1 class="main-title">ll COPA KingKong 2025 ll</h1>
+        <div class="description">
+            <p>Primera Copa de los estudiantes de Compu de la UVG. Si todo sale bien y se la pasan bonito se repite con otro deporte. Se pide respeto en todo momento(Jorge porfa sin comentarios racistas, clasistas, gordofobicos, etc.) </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="participants-section">
+            <h2 class="section-title">Lista de Participantes</h2>
+            <div class="participants-container">
+                <div class="participants-grid">
+                    <div class="participant-item">
+                        <span class="participant-number">1</span>
+                        <span>Harry Mendez🐼</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">2</span>
+                        <span>Diego Quixchan🦄</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">3</span>
+                        <span>Jorge Villeda🃏</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">4</span>
+                        <span>Andres Ismalej🐈‍⬛</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">5</span>
+                        <span>Juan Gualim🧑‍🎓</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">6</span>
+                        <span>Derek Coronado🎱</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">7</span>
+                        <span>Angel Sanabria🧨</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">8</span>
+                        <span>Josue Garcia🦇</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">9</span>
+                        <span>Jose Abril🐍</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">10</span>
+                        <span>Adrian Penagos🦨</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">11</span>
+                        <span>Francisco Montenegro🐃</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">12</span>
+                        <span>Lazaro </span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">13</span>
+                        <span>Participante 13</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">14</span>
+                        <span>Participante 14</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">15</span>
+                        <span>Participante 15</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">16</span>
+                        <span>Participante 16</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">17</span>
+                        <span>Participante 17</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">18</span>
+                        <span>Participante 18</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">19</span>
+                        <span>Participante 19</span>
+                    </div>
+                    <div class="participant-item">
+                        <span class="participant-number">20</span>
+                        <span>Participante 20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="teams-section">
+            <div class="team-card team-a">
+                <h3 class="team-title">Equipo A</h3>
+                <div class="team-members">
+                    <div class="team-member">Jugador 1</div>
+                    <div class="team-member">Jugador 2</div>
+                    <div class="team-member">Jugador 3</div>
+                    <div class="team-member">Jugador 4</div>
+                    <div class="team-member">Jugador 5</div>
+                    <div class="team-member">Jugador 6</div>
+                    <div class="team-member">Jugador 7</div>
+                    <div class="team-member">Jugador 8</div>
+                    <div class="team-member">Jugador 9</div>
+                    <div class="team-member">Jugador 10</div>
+                </div>
+            </div>
+
+            <div class="team-card team-b">
+                <h3 class="team-title">Equipo B</h3>
+                <div class="team-members">
+                    <div class="team-member">Jugador 1</div>
+                    <div class="team-member">Jugador 2</div>
+                    <div class="team-member">Jugador 3</div>
+                    <div class="team-member">Jugador 4</div>
+                    <div class="team-member">Jugador 5</div>
+                    <div class="team-member">Jugador 6</div>
+                    <div class="team-member">Jugador 7</div>
+                    <div class="team-member">Jugador 8</div>
+                    <div class="team-member">Jugador 9</div>
+                    <div class="team-member">Jugador 10</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-section">
+            <h2 class="section-title">Foto del Evento</h2>
+            <div class="photo-container">
+                <div class="photo-placeholder">
+                    <div class="photo-title">🏆 Foto Final de la Copa KingKong 2025</div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
